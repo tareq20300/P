@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>طارق التركي | Tareq Al-Turki</title>
+  <meta name="description" content="Portfolio of Tareq Al-Turki, high school student in Madinah: programming, cybersecurity and AI.">
+  <meta name="theme-color" content="#0a0c10">
+  <!-- Without JavaScript, show everything instead of hiding it -->
+  <noscript><style>.rv { opacity: 1 !important; transform: none !important; } .role { display: none; }</style></noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== 1. THEME: edit colors and fonts here ===== */
+    :root {
+      --bg: #f4f3ef;  --panel: #ffffff;  --ink: #14161a;
+      --muted: #5f646d;  --line: #e0ddd5;  --accent: #0f766e;  --accent-ink: #ffffff;
+      --head: "Bricolage Grotesque", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      box-sizing: border-box;
+      color-scheme: light;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0a0c10;  --panel: #12161c;  --ink: #eceae4;
+        --muted: #9096a0;  --line: #232932;  --accent: #5eead4;  --accent-ink: #06201c;
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0a0c10;  --panel: #12161c;  --ink: #eceae4;
+      --muted: #9096a0;  --line: #232932;  --accent: #5eead4;  --accent-ink: #06201c;
+      color-scheme: dark;
+    }
+    html[lang="ar"] { --head: "Tajawal", sans-serif; --body: "Tajawal", sans-serif; --mono: "Tajawal", sans-serif; }
+    /* Arabic letters must stay joined: no letter-spacing in Arabic */
+    html[lang="ar"] * { letter-spacing: 0 !important; }
+    html[lang="ar"] .en, html[lang="en"] .ar { display: none !important; }
+
+    /* ===== 2. BASE ===== */
+    *, *::before, *::after { box-sizing: inherit; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(90px + env(safe-area-inset-top, 0px)); }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.05rem/1.7 var(--body); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    ::selection { background: var(--accent); color: var(--accent-ink); }
+    main { overflow-x: clip; }
+    .wrap { width: min(100% - 2rem, 66rem); margin-inline: auto; }
+    body::before {            /* covers the phone notch area */
+      content: ""; position: fixed; inset: 0 0 auto; z-index: 31;
+      height: env(safe-area-inset-top, 0px); background: var(--bg);
+    }
+
+    /* ===== 3. FLOATING NAV ===== */
+    header {
+      position: sticky; top: calc(.75rem + env(safe-area-inset-top, 0px)); z-index: 30;
+      width: min(100% - 1.5rem, 46rem); margin: .75rem auto 0;
+      background: color-mix(in srgb, var(--panel) 80%, transparent);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--line); border-radius: 999px;
+    }
+    nav { display: flex; align-items: center; gap: .75rem; height: 3.4rem; padding-inline: 1.1rem .5rem; }
+    .logo { font: 700 1.1rem var(--head); text-decoration: none; direction: ltr; }
+    .logo b { color: var(--accent); }
+    .links { flex: 1; min-width: 0; display: flex; gap: .3rem; overflow-x: auto; scrollbar-width: none; justify-content: center; }
+    .links::-webkit-scrollbar { display: none; }
+    .links a { padding: .5rem .95rem; border-radius: 999px; color: var(--muted); font-size: .88rem; text-decoration: none; white-space: nowrap; transition: .2s; }
+    .links a:hover { color: var(--ink); }
+    .links a.on { background: var(--accent); color: var(--accent-ink); }
+    .tools { display: flex; gap: .3rem; }
+    .ib { min-width: 2.6rem; height: 2.6rem; padding: 0 .55rem; background: none; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; font: 500 .78rem var(--mono); cursor: pointer; }
+    .ib:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ===== 4. HERO ===== */
+    .hero { padding: clamp(3rem, 10vw, 7rem) 0 clamp(2rem, 5vw, 3.5rem); position: relative; }
+    .hero::before {            /* soft glow */
+      content: ""; position: absolute; inset: -6rem -10vw auto; height: 28rem; z-index: -1; pointer-events: none;
+      background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 18%, transparent), transparent);
+    }
+    .pill { display: inline-flex; align-items: center; gap: .5rem; padding: .3rem .9rem; margin-bottom: 1.4rem; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--muted); font: 500 .8rem var(--mono); }
+    .pill::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent); }
+    h1 { max-width: 14ch; margin: 0 0 1.1rem; font: 700 clamp(2.8rem, 9vw, 6.2rem)/1.02 var(--head); letter-spacing: -.03em; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .role { min-height: 2rem; margin: 0 0 2rem; color: var(--muted); font: 500 clamp(1.1rem, 2.4vw, 1.5rem) var(--head); transition: opacity .35s; }
+    .role.fade { opacity: 0; }
+    .cta { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .btn { display: inline-block; padding: .8rem 1.5rem; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--ink); font: 500 .95rem var(--body); text-decoration: none; cursor: pointer; transition: transform .15s, border-color .2s; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.main { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+    /* ===== 5. SECTIONS ===== */
+    section { padding: clamp(2.5rem, 6vw, 4.5rem) 0; }
+    h2 { margin: 0 0 1.5rem; font: 700 clamp(1.8rem, 4.5vw, 2.8rem)/1.1 var(--head); letter-spacing: -.02em; }
+    h2 small { display: block; margin-bottom: .5rem; color: var(--accent); font: 500 .8rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    h3 { margin: 0 0 .4rem; font: 700 1.25rem var(--head); }
+
+    /* ===== 6. BENTO TILES ===== */
+    .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+    .s2 { grid-column: span 2; }  .s3 { grid-column: span 3; }  .s4 { grid-column: span 4; }  .s6 { grid-column: span 6; }
+    @media (max-width: 760px) {
+      .bento { grid-template-columns: 1fr 1fr; }
+      .s2 { grid-column: span 1; }  .s3, .s4, .s6 { grid-column: span 2; }
+    }
+    .t {
+      position: relative; overflow: hidden; padding: 1.5rem;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 22px;
+      transition: border-color .25s, transform .25s;
+    }
+    .t:hover { border-color: color-mix(in srgb, var(--accent) 60%, var(--line)); }   /* subtle: tiles are not buttons */
+    .t p { margin: 0; color: var(--muted); font-size: .98rem; }
+    .k { display: block; margin-bottom: .7rem; color: var(--accent); font: 500 .75rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .num { display: block; direction: ltr; text-align: start; font: 700 clamp(2.2rem, 5vw, 3.4rem)/1 var(--head); letter-spacing: -.02em; }
+    .about-t p { color: var(--ink); font: 500 clamp(1.1rem, 2.3vw, 1.45rem)/1.55 var(--head); }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .8rem 0 0; padding: 0; list-style: none; }
+    .chips li { padding: .2rem .75rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font: 500 .82rem var(--mono); }
+
+    /* score ring */
+    @property --p { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+    .ring {
+      display: grid; place-items: center; width: 8.5rem; aspect-ratio: 1; margin-bottom: .8rem; border-radius: 50%;
+      background: conic-gradient(var(--accent) 0 var(--p), var(--line) 0);
+      transition: --p 1.4s cubic-bezier(.2, .7, .2, 1);
+    }
+    .rv.in .ring { --p: 79%; }   /* 1581 / 2000 */
+    .ring::before { content: ""; grid-area: 1 / 1; width: 82%; aspect-ratio: 1; border-radius: 50%; background: var(--panel); }
+    .ring span { grid-area: 1 / 1; position: relative; direction: ltr; text-align: center; font: 700 1.9rem/1 var(--head); }
+    .ring small { display: block; color: var(--muted); font: 500 .7rem var(--mono); }
+
+    /* featured project */
+    .feature { background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--panel)), var(--panel) 60%); }
+    .feature h3 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+    .feature p { max-width: 38rem; }
+
+    /* ===== 7. TIMELINE ===== */
+    .tl { position: relative; margin: 0; padding: 0; list-style: none; }
+    .tl::before { content: ""; position: absolute; inset-block: .5rem; inset-inline-start: .45rem; width: 2px; background: var(--line); }
+    .tl li { position: relative; padding-inline-start: 2.2rem; padding-bottom: 1.8rem; }
+    .tl li::before { content: ""; position: absolute; inset-inline-start: 0; top: .5rem; width: 1rem; height: 1rem; border-radius: 50%; background: var(--bg); border: 3px solid var(--accent); }
+    .tl .yr { color: var(--accent); font: 500 .8rem var(--mono); }
+    .tl p { margin: 0; color: var(--muted); }
+
+    /* ===== 8. CONTACT + FOOTER ===== */
+    .contact { text-align: start; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .contact .k, .contact p { color: var(--accent-ink); opacity: .8; }
+    .big { display: inline-block; margin: .3rem 0 .6rem; color: var(--accent-ink); font: 700 clamp(1.4rem, 5.5vw, 3.2rem)/1.15 var(--head); direction: ltr; word-break: break-word; text-decoration: none; border-bottom: 3px solid currentColor; }
+    .phone { display: block; direction: ltr; unicode-bidi: isolate; text-align: start; margin-bottom: 1.2rem; font: 500 1.05rem var(--mono); text-decoration: none; }
+    .contact .btn { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--accent); }
+    footer { padding: 2rem 0 3rem; color: var(--muted); font: 500 .8rem var(--mono); text-align: center; }
+
+    /* ===== 8b. POLISH ===== */
+    .skip { position: absolute; inset-inline-start: 1rem; top: -4rem; z-index: 40; padding: .6rem 1rem; border-radius: 8px; background: var(--accent); color: var(--accent-ink); transition: top .2s; }
+    .skip:focus { top: calc(.5rem + env(safe-area-inset-top, 0px)); }
+    .btn.quiet { background: none; border-color: transparent; text-decoration: underline; text-underline-offset: .3em; }
+    .contact .btn { margin-inline-end: .5rem; margin-bottom: .5rem; }
+    .contact a:focus-visible, .contact button:focus-visible { outline-color: var(--accent-ink); }   /* accent outline would vanish on the accent card */
+
+    /* ===== 9. MOTION, FOCUS, PRINT ===== */
+    .rv { opacity: 0; transform: translateY(20px); transition: opacity .7s, transform .7s; }
+    .rv.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .rv { opacity: 1; transform: none; transition: none; }
+      .t, .btn, .role, .ring, .skip { transition: none; }
+      .ring { --p: 79%; }
+    }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    @media print {
+      header, .cta, footer, body::before, .contact .btn { display: none; }
+      body { background: #fff; color: #000; }
+      .rv { opacity: 1; transform: none; }
+      .t { break-inside: avoid; background: none; }
+      .ring { --p: 79%; }
+      .contact { background: none; color: #000; } .big, .contact .k, .contact p { color: #000; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#top"><span class="ar">انتقل إلى المحتوى</span><span class="en">Skip to content</span></a>
+  <!-- Pattern used everywhere: <span class="ar">Arabic</span><span class="en">English</span> -->
+  <header>
+    <nav aria-label="Main">
+      <a class="logo" href="#top">tareq<b>.</b></a>
+      <div class="links">
+        <a href="#about"><span class="ar">نبذة</span><span class="en">About</span></a>
+        <a href="#projects"><span class="ar">المشاريع</span><span class="en">Projects</span></a>
+        <a href="#programs"><span class="ar">البرامج</span><span class="en">Programs</span></a>
+        <a href="#contact"><span class="ar">تواصل</span><span class="en">Contact</span></a>
+      </div>
+      <div class="tools">
+        <button class="ib" id="lang" type="button" aria-label="Switch language">EN</button>
+        <button class="ib" id="theme" type="button" aria-label="Switch light or dark theme">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== HERO ===== -->
+    <div class="wrap hero">
+      <span class="pill"><span class="ar">طالب ثانوي · المدينة المنورة</span><span class="en">High school student · Madinah</span></span>
+      <h1>
+        <span class="ar">طارق عبد العزيز منصور <em>التركي</em></span>
+        <span class="en">Tareq Abdulaziz Mansour <em>Al-Turki</em></span>
+      </h1>
+      <p class="role" id="role"></p>
+      <div class="cta">
+        <a class="btn main" href="#projects"><span class="ar">مشاريعي</span><span class="en">My projects</span></a>
+        <a class="btn" href="#contact"><span class="ar">تواصل معي</span><span class="en">Contact me</span></a>
+        <button class="btn quiet" type="button" onclick="window.print()"><span class="ar">حفظ السيرة PDF</span><span class="en">Save CV as PDF</span></button>
+      </div>
+    </div>
+
+    <!-- ===== ABOUT: bento overview ===== -->
+    <section id="about">
+      <div class="wrap bento">
+        <div class="t s2 rv">
+          <div class="ring"><span>1581<small>/ 2000</small></span></div>
+          <p><span class="ar">مقياس موهبة للقدرات العقلية المتعددة، تصنيف «موهوب».</span><span class="en">Mawhiba multiple mental abilities test, rated “Gifted”.</span></p>
+        </div>
+        <div class="t s2 rv">
+          <span class="k"><span class="ar">ساعات تدريبية</span><span class="en">Training hours</span></span>
+          <b class="num" data-count="165" data-suffix="+">165+</b>
+          <p><span class="ar">في ثلاثة برامج إثرائية.</span><span class="en">Across three enrichment programs.</span></p>
+        </div>
+        <div class="t s2 rv">
+          <span class="k"><span class="ar">مشاركات موهبة</span><span class="en">Mawhiba records</span></span>
+          <b class="num" data-count="9">9</b>
+          <p><span class="ar">برامج ومسابقات.</span><span class="en">Programs and competitions.</span></p>
+        </div>
+
+        <div class="t s4 about-t rv">
+          <span class="k"><span class="ar">نبذة</span><span class="en">Summary</span></span>
+          <p>
+            <span class="ar">مهتم بعلوم الحاسب والبرمجة والأمن السيبراني والذكاء الاصطناعي. أطور مهاراتي بالتعلم الذاتي والتطبيق العملي، وأسعى إلى بناء مشاريع تحل المشكلات وتنمّي التفكير المنطقي.</span>
+            <span class="en">Interested in computer science, programming, cybersecurity and AI. I grow through self-directed learning and hands-on practice, and I want to build projects that solve problems and sharpen my logical thinking.</span>
+          </p>
+        </div>
+        <div class="t s2 rv">
+          <span class="k"><span class="ar">التعليم</span><span class="en">Education</span></span>
+          <h3><span class="ar">ثانوية الموهوبين التقنية للبنين</span><span class="en">Technical School for the Gifted (Boys)</span></h3>
+          <p><span class="ar">المدينة المنورة</span><span class="en">Madinah, Saudi Arabia</span></p>
+        </div>
+
+        <div class="t s2 rv"><span class="k">Python</span><p><span class="ar">المتغيرات والشروط والحلقات والقوائم.</span><span class="en">Variables, conditionals, loops and lists.</span></p></div>
+        <div class="t s2 rv"><span class="k">C++</span><p><span class="ar">أساسيات اللغة وحل مسائل بسيطة.</span><span class="en">Language basics and simple problems.</span></p></div>
+        <div class="t s2 rv"><span class="k"><span class="ar">الويب</span><span class="en">Web</span></span><ul class="chips" style="margin:0"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></div>
+        <div class="t s3 rv"><span class="k"><span class="ar">الذكاء الاصطناعي</span><span class="en">AI</span></span><p><span class="ar">النماذج اللغوية وتطبيقات الذكاء الاصطناعي المحلية.</span><span class="en">Language models and local AI applications.</span></p></div>
+        <div class="t s3 rv"><span class="k"><span class="ar">الأمن السيبراني</span><span class="en">Cybersecurity</span></span><p><span class="ar">مفاهيم الأمن الرقمي وأدوات الاستطلاع وتحليل المعلومات.</span><span class="en">Digital security concepts, reconnaissance tools and information analysis.</span></p></div>
+        <div class="t s4 rv"><span class="k"><span class="ar">مهارات شخصية</span><span class="en">Soft skills</span></span>
+          <ul class="chips" style="margin:0">
+            <li><span class="ar">التفكير المنطقي</span><span class="en">Logic</span></li><li><span class="ar">حل المشكلات</span><span class="en">Problem solving</span></li><li><span class="ar">التعلم الذاتي</span><span class="en">Self-learning</span></li><li><span class="ar">البحث التقني</span><span class="en">Research</span></li><li><span class="ar">الاهتمام بالتفاصيل</span><span class="en">Detail-oriented</span></li>
+          </ul></div>
+        <div class="t s2 rv"><span class="k"><span class="ar">اللغات</span><span class="en">Languages</span></span><p><span class="ar">العربية: الأساسية<br>الإنجليزية: A2–B1 (تقييم ذاتي)</span><span class="en">Arabic: native<br>English: A2–B1 (self-assessed)</span></p></div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+      <div class="wrap">
+        <h2 class="rv"><small><span class="ar">// أعمال</span><span class="en">// work</span></small><span class="ar">المشاريع</span><span class="en">Projects</span></h2>
+        <div class="bento">
+          <div class="t s6 feature rv">
+            <span class="k"><span class="ar">قيد التطوير</span><span class="en">In progress</span></span>
+            <h3>JARVIS</h3>
+            <p>
+              <span class="ar">مساعد شخصي بالذكاء الاصطناعي يعمل على نماذج محلية مفتوحة المصدر. أجرّب فهم الشاشة والتفاعل مع الكمبيوتر، وأتعلم من خلاله دمج المكونات التقنية.</span>
+              <span class="en">A personal AI assistant running on local open-source models. I am testing screen understanding and computer interaction, and learning how to integrate the technical pieces.</span>
+            </p>
+            <ul class="chips"><li>Local LLMs</li><li>Python</li><li>Screen understanding</li></ul>
+          </div>
+          <div class="t s6 rv">
+            <span class="k"><span class="ar">شخصية</span><span class="en">Personal</span></span>
+            <h3><span class="ar">مشاريع برمجية أخرى</span><span class="en">Other programming projects</span></h3>
+            <p><span class="ar">أطبق ما أتعلمه في مشاريع صغيرة وأجرّب أدوات وتقنيات جديدة.</span><span class="en">I apply what I learn in small projects and try new tools and technologies.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROGRAMS ===== -->
+    <section id="programs">
+      <div class="wrap">
+        <h2 class="rv"><small><span class="ar">// موهبة</span><span class="en">// mawhiba</span></small><span class="ar">البرامج والمسابقات</span><span class="en">Programs &amp; competitions</span></h2>
+        <ol class="tl rv">
+          <li><span class="yr">2026 · 60 <span class="ar">ساعة</span><span class="en">hrs</span></span><h3><span class="ar">البرنامج الإثرائي الأكاديمي</span><span class="en">Academic Enrichment Program</span></h3></li>
+          <li><span class="yr">2026 · 60 <span class="ar">ساعة</span><span class="en">hrs</span></span><h3><span class="ar">البرنامج المتقدم في العلوم والرياضيات</span><span class="en">Advanced Science and Math Program</span></h3></li>
+          <li><span class="yr">2025 · 45 <span class="ar">ساعة</span><span class="en">hrs</span></span><h3><span class="ar">الإثرائي لما بعد المدرسة</span><span class="en">After-School Enrichment Program</span></h3>
+            <p><span class="ar">علوم الحاسب والرياضيات التطبيقية، وحدة برمجة الحاسب.</span><span class="en">Computer science and applied math, computer programming unit.</span></p></li>
+        </ol>
+        <div class="t rv">
+          <span class="k"><span class="ar">المسابقات</span><span class="en">Competitions</span></span>
+          <ul class="chips" style="margin:0">
+            <li><span class="ar">نسمو 2026</span><span class="en">NSMO 2026</span></li>
+            <li><span class="ar">موهوب 2024</span><span class="en">Mawhoob 2024</span></li>
+            <li><span class="ar">كانجارو 2024 و2020</span><span class="en">Kangaroo 2024, 2020</span></li>
+            <li><span class="ar">بيبراس 2025 و2023</span><span class="en">Bebras 2025, 2023</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="t contact rv">
+          <span class="k"><span class="ar">لنتواصل</span><span class="en">Let’s talk</span></span>
+          <a class="big" href="mailto:tareqalturki0@gmail.com">tareqalturki0@gmail.com</a>
+          <a class="phone" href="tel:+966507019929">+966 50 701 9929</a>
+          <a class="btn" href="https://wa.me/966507019929" target="_blank" rel="noopener"><span class="ar">واتساب</span><span class="en">WhatsApp</span></a>
+          <button class="btn" id="copy" type="button"><span class="ar">نسخ البريد</span><span class="en">Copy email</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="yr">2026</span> <span class="ar">طارق عبد العزيز منصور التركي</span><span class="en">Tareq Abdulaziz Mansour Al-Turki</span></footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var langBtn = document.getElementById('lang');
+      var roleEl = document.getElementById('role');
+      var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ---------- Rotating role line ----------
+      var roles = {
+        ar: ['مبرمج مبتدئ', 'مهتم بالأمن السيبراني', 'أبني مساعدًا بالذكاء الاصطناعي'],
+        en: ['Aspiring programmer', 'Cybersecurity learner', 'Building a local AI assistant']
+      };
+      var roleIndex = 0;
+      function showRole() { roleEl.textContent = roles[root.lang][roleIndex % 3]; }
+      if (!still) {
+        setInterval(function () {
+          roleEl.classList.add('fade');
+          setTimeout(function () { roleIndex++; showRole(); roleEl.classList.remove('fade'); }, 350);
+        }, 2800);
+      }
+
+      // ---------- Language ----------
+      function setLanguage(lang) {
+        root.lang = lang;
+        root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        langBtn.textContent = lang === 'ar' ? 'EN' : 'عربي';
+        document.title = lang === 'ar' ? 'طارق التركي | السيرة الذاتية' : 'Tareq Al-Turki | CV';
+        showRole();
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+      }
+      var savedLang = 'ar';
+      try { savedLang = localStorage.getItem('lang') || 'ar'; } catch (e) {}
+      setLanguage(savedLang);
+      langBtn.addEventListener('click', function () { setLanguage(root.lang === 'ar' ? 'en' : 'ar'); });
+
+      // ---------- Theme ----------
+      try { var t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+      document.getElementById('theme').addEventListener('click', function () {
+        var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        var next = dark ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+
+      document.getElementById('yr').textContent = new Date().getFullYear();
+
+      // ---------- Copy email ----------
+      var copyBtn = document.getElementById('copy');
+      copyBtn.addEventListener('click', function () {
+        var original = copyBtn.innerHTML;
+        function done() { copyBtn.textContent = '✓'; setTimeout(function () { copyBtn.innerHTML = original; }, 1500); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText('tareqalturki0@gmail.com').then(done, function () {});
+        }
+      });
+
+      // ---------- Count-up numbers ----------
+      function countUp(el) {
+        var target = +el.dataset.count, suffix = el.dataset.suffix || '', start = null;
+        if (still) return;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / 1100, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + (p === 1 ? suffix : '');
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      // ---------- Reveal on scroll + nav highlight ----------
+      var items = document.querySelectorAll('.rv');
+      if ('IntersectionObserver' in window) {
+        var reveal = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('in');
+            var tile = e.target;
+            setTimeout(function () { tile.style.transitionDelay = ''; }, 1200);   /* stagger only on first reveal */
+            var n = e.target.querySelector('[data-count]');
+            if (n) countUp(n);
+            reveal.unobserve(e.target);
+          });
+        }, { threshold: 0.12 });
+        // Stagger tiles inside each grid
+        document.querySelectorAll('.bento').forEach(function (grid) {
+          Array.prototype.forEach.call(grid.children, function (tile, i) { tile.style.transitionDelay = (i % 3) * 90 + 'ms'; });
+        });
+        items.forEach(function (el) { reveal.observe(el); });
+
+        var links = document.querySelectorAll('.links a');
+        var byId = {};
+        links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            links.forEach(function (a) { a.classList.remove('on'); });
+            if (byId[e.target.id]) byId[e.target.id].classList.add('on');
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        document.querySelectorAll('main section[id]').forEach(function (s) { spy.observe(s); });
+      } else {
+        items.forEach(function (el) { el.classList.add('in'); });
+      }
+    })();
+  </script>
+</body>
+</html>
